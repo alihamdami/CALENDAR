@@ -1,3 +1,18 @@
+body.dark-mode {
+    background-color: #181818 !important;
+    color: #f1f1f1 !important;
+}
+
+.dark-mode .border {
+    background: #232323 !important;
+    color: #f1f1f1 !important;
+    border-color: #444 !important;
+}
+
+.dark-mode .bg-light {
+    background-color: #232323 !important;
+    color: #f1f1f1 !important;
+}
 /* body{
     background-color: white;
     font-size: medium;
