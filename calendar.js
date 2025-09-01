@@ -68,7 +68,23 @@ document.addEventListener("DOMContentLoaded", function () {
     const daysInMonth = new Date(year, month + 1, 0).getDate();
 
     let html = `<h4>${dayjs(currentDate).format("MMMM YYYY")}</h4>`;
-    html += `<div class="row row-cols-5 g-2">`;
+
+    // Add day-of-week headers
+    const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    html += `<div class="row g-2 mb-1">`;
+    for (let i = 0; i < 7; i++) {
+      html += `<div class="col text-center fw-bold">${weekDays[i]}</div>`;
+    }
+    html += `</div>`;
+
+    html += `<div class="row row-cols-7 g-2">`;
+
+    // Find the first day of the month
+    const firstDay = new Date(year, month, 1).getDay();
+    // Add empty cells for days before the first
+    for (let i = 0; i < firstDay; i++) {
+      html += `<div class="col"></div>`;
+    }
 
     for (let day = 1; day <= daysInMonth; day++) {
       const date = new Date(year, month, day);
@@ -79,15 +95,14 @@ document.addEventListener("DOMContentLoaded", function () {
       const hijriMoment = moment(date);
       const hijriDateStr = hijriMoment.format("iYYYY-iMM-iDD");
       const hijriMonthsEN = [
-      "Muharram", "Safar", "Rabi' al-awwal", "Rabi' al-thani",
-      "Jumada al-awwal", "Jumada al-thani", "Rajab", "Sha'ban",
-      "Ramadan", "Shawwal", "Dhu al-Qi'dah", "Dhu al-Hijjah"
+        "Muharram", "Safar", "Rabi' al-awwal", "Rabi' al-thani",
+        "Jumada al-awwal", "Jumada al-thani", "Rajab", "Sha'ban",
+        "Ramadan", "Shawwal", "Dhu al-Qi'dah", "Dhu al-Hijjah"
       ];
       const hijriMonthIndex = parseInt(hijriMoment.format("iM")) - 1;
       const hijriDay = hijriMoment.format("iD");
       const hijriYear = hijriMoment.format("iYYYY");
       const hijriReadable = `${hijriDay} ${hijriMonthsEN[hijriMonthIndex]} ${hijriYear}`;
-
 
       let content = `<strong>${day}</strong><br>`;
       let special = "";

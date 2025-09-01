@@ -13,6 +13,14 @@ body.dark-mode {
     background-color: #232323 !important;
     color: #f1f1f1 !important;
 }
+
+@media (max-width: 576px) {
+    #darkModeToggle {
+        right: auto;
+        left: 10px;
+        top: 10px;
+    }
+}
 /* body{
     background-color: white;
     font-size: medium;
